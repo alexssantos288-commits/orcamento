@@ -1,0 +1,660 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Orçamentos</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+    <!-- Include components -->
+    <include src="../components/header.html"></include>
+    <include src="../components/sidebar.html"></include>
+    <main>
+        <h1>Orçamentos</h1>
+        
+        <p>Conteúdo da página <strong>Orçamentos</strong> em desenvolvimento.</p>
+    </main>
+    <include src="../components/footer.html"></include>
+    <script src="../js/dashboard.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orçamentos - Dashboard</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+        :root {
+            --primary: #2b6777;
+            --secondary: #52ab98;
+            --light: #c8d8e4;
+            --white: #ffffff;
+            --gray: #f2f2f2;
+            --yellow: #f39c12;
+            --red: #e74c3c;
+            --blue: #3498db;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--gray);
+            color: #333;
+        }
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            width: 70px;
+            background: var(--primary);
+            transition: width 0.3s ease, transform 0.3s ease;
+            overflow: hidden;
+            z-index: 1000;
+        }
+        .sidebar:hover {
+            width: 250px;
+        }
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            .sidebar:hover {
+                transform: translateX(0);
+                width: 250px;
+            }
+        }
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .sidebar-header .material-symbols-outlined {
+            font-size: 32px;
+            color: white;
+            min-width: 32px;
+        }
+        .brand {
+            margin-left: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            white-space: nowrap;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 20px 0;
+            margin: 0;
+        }
+        .sidebar li {
+            margin: 0;
+        }
+        .sidebar a {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            color: white;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: background 0.2s;
+        }
+        .sidebar a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .sidebar .material-symbols-outlined {
+            font-size: 24px;
+            margin-right: 20px;
+            min-width: 24px;
+            flex-shrink: 0;
+        }
+        .sidebar a.active {
+            background: var(--secondary);
+        }
+        .main-container {
+            margin-left: 70px;
+            transition: margin-left 0.3s ease;
+        }
+        @media (max-width: 768px) {
+            .main-container {
+                margin-left: 0;
+            }
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        header h1 {
+            margin: 0;
+            color: var(--primary);
+            font-size: 28px;
+        }
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .user {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #666;
+            font-weight: 500;
+        }
+        .user .material-symbols-outlined {
+            font-size: 28px;
+        }
+        .logout {
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 50%;
+            transition: background 0.2s;
+        }
+        .logout:hover {
+            background: #f0f0f0;
+        }
+        main {
+            padding: 30px;
+            min-height: calc(100vh - 80px);
+        }
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+            header h1 {
+                font-size: 24px;
+            }
+            main {
+                padding: 20px;
+            }
+        }
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .new-btn {
+            background: var(--secondary);
+            color: var(--white);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            font-size: 16px;
+            transition: background 0.2s;
+        }
+        .new-btn:hover {
+            background: #45a389;
+        }
+        .new-btn .material-symbols-outlined {
+            font-size: 24px;
+        }
+        .search-filter {
+            display: flex;
+            gap: 10px;
+            flex: 1;
+            min-width: 300px;
+        }
+        @media (max-width: 768px) {
+            .search-filter {
+                flex: 1 1 100%;
+                min-width: auto;
+            }
+        }
+        .search-container {
+            position: relative;
+            flex: 1;
+        }
+        .search-container input {
+            width: 100%;
+            padding: 12px 50px 12px 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        .search-icon {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            font-size: 20px;
+        }
+        .filter-select {
+            padding: 12px 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            background: var(--white);
+            min-width: 150px;
+        }
+        .table-container {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th,
+        td {
+            padding: 16px 20px;
+            text-align: left;
+        }
+        th {
+            background: var(--light);
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        tbody tr {
+            transition: background 0.2s;
+        }
+        tbody tr:hover {
+            background: #f8f9fa;
+        }
+        tbody tr:nth-child(even) {
+            background: #fafbfc;
+        }
+        .valor {
+            text-align: right;
+            font-weight: 600;
+            color: var(--secondary);
+        }
+        .data {
+            text-align: center;
+        }
+        .acoes {
+            text-align: center;
+        }
+        .status {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .status.aprovado {
+            background: var(--secondary);
+            color: var(--white);
+        }
+        .status.pendente {
+            background: var(--yellow);
+            color: var(--white);
+        }
+        .status.rejeitado {
+            background: var(--red);
+            color: var(--white);
+        }
+        .actions {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+        }
+        .action-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 6px;
+            transition: all 0.2s;
+            font-size: 18px;
+        }
+        .action-btn:hover {
+            transform: scale(1.1);
+        }
+        .edit {
+            color: var(--blue);
+        }
+        .edit:hover {
+            background: rgba(52, 152, 219, 0.1);
+        }
+        .view {
+            color: var(--secondary);
+        }
+        .view:hover {
+            background: rgba(82, 171, 152, 0.1);
+        }
+        .delete {
+            color: var(--red);
+        }
+        .delete:hover {
+            background: rgba(231, 76, 60, 0.1);
+        }
+        .pagination {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 30px;
+            background: var(--white);
+            border-top: 1px solid #eee;
+        }
+        .pagination-info {
+            color: #666;
+            font-size: 14px;
+        }
+        .page-btns {
+            display: flex;
+            gap: 10px;
+        }
+        .page-btn {
+            background: var(--light);
+            color: var(--primary);
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .page-btn:hover:not(.disabled) {
+            background: var(--primary);
+            color: var(--white);
+        }
+        .page-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+        /* Responsive Table to Cards */
+        @media (max-width: 768px) {
+            .table-container table,
+            .table-container thead,
+            .table-container tbody,
+            .table-container th,
+            .table-container td,
+            .table-container tr {
+                display: block;
+            }
+            .table-container thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+            .table-container tr {
+                border: 1px solid #e0e0e0;
+                margin-bottom: 16px;
+                padding: 20px;
+                border-radius: 12px;
+                background: var(--white);
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            }
+            .table-container td {
+                border: none;
+                position: relative;
+                padding-left: 50%;
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: right;
+            }
+            .table-container td:before {
+                content: attr(data-label) ": ";
+                position: absolute;
+                left: 20px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                text-align: left;
+                font-weight: 600;
+                color: var(--primary);
+                top: 12px;
+            }
+            .acoes {
+                display: flex !important;
+                justify-content: flex-end !important;
+                padding-left: 50% !important;
+            }
+            .actions {
+                justify-content: flex-end;
+            }
+            .valor {
+                text-align: right;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <span class="material-symbols-outlined">dashboard</span>
+            <span class="brand">Dashboard</span>
+        </div>
+        <ul>
+            <li><a href="dashboard.html" title="Dashboard"><span class="material-symbols-outlined">home</span>Dashboard</a></li>
+            <li><a href="#" title="Clientes"><span class="material-symbols-outlined">people</span>Clientes</a></li>
+            <li><a href="#" title="Estoque"><span class="material-symbols-outlined">inventory_2</span>Estoque</a></li>
+            <li><a href="#" class="active" title="Orçamentos"><span class="material-symbols-outlined">description</span>Orçamentos</a></li>
+            <li><a href="#" title="Contratos"><span class="material-symbols-outlined">gavel</span>Contratos</a></li>
+            <li><a href="#" title="Configurações"><span class="material-symbols-outlined">settings</span>Configurações</a></li>
+            <li><a href="#" title="Sair"><span class="material-symbols-outlined">logout</span>Sair</a></li>
+        </ul>
+    </nav>
+    <div class="main-container">
+        <header>
+            <h1>Orçamentos</h1>
+            <div class="header-right">
+                <div class="user">
+                    <span class="material-symbols-outlined">account_circle</span>
+                    <span>João Admin</span>
+                </div>
+                <span class="material-symbols-outlined logout" title="Sair">logout</span>
+            </div>
+        </header>
+        <main>
+            <div class="toolbar">
+                <h1>Orçamentos</h1>
+                <button class="new-btn">
+                    <span class="material-symbols-outlined">add_circle</span>
+                    Novo Orçamento
+                </button>
+                <div class="search-filter">
+                    <div class="search-container">
+                        <input type="search" placeholder="Buscar por cliente ou ID...">
+                        <span class="material-symbols-outlined search-icon">search</span>
+                    </div>
+                    <select class="filter-select">
+                        <option>Todos</option>
+                        <option>Aprovado</option>
+                        <option>Pendente</option>
+                        <option>Rejeitado</option>
+                    </select>
+                </div>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Cliente</th>
+                            <th>Valor</th>
+                            <th>Status</th>
+                            <th>Data</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="ID">#001</td>
+                            <td data-label="Cliente">João Silva</td>
+                            <td data-label="Valor" class="valor">R$ 2.500,00</td>
+                            <td data-label="Status"><span class="status aprovado">Aprovado</span></td>
+                            <td data-label="Data" class="data">15/10/2023</td>
+                            <td data-label="Ações" class="acoes">
+                                <div class="actions">
+                                    <button class="action-btn edit" title="Editar"><span class="material-symbols-outlined">edit</span></button>
+                                    <button class="action-btn view" title="Visualizar"><span class="material-symbols-outlined">visibility</span></button>
+                                    <button class="action-btn delete" title="Deletar"><span class="material-symbols-outlined">delete</span></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-label="ID">#002</td>
+                            <td data-label="Cliente">Ana Costa</td>
+                            <td data-label="Valor" class="valor">R$ 1.200,00</td>
+                            <td data-label="Status"><span class="status pendente">Pendente</span></td>
+                            <td data-label="Data" class="data">16/10/2023</td>
+                            <td data-label="Ações" class="acoes">
+                                <div class="actions">
+                                    <button class="action-btn edit" title="Editar"><span class="material-symbols-outlined">edit</span></button>
+                                    <button class="action-btn view" title="Visualizar"><span class="material-symbols-outlined">visibility</span></button>
+                                    <button class="action-btn delete" title="Deletar"><span class="material-symbols-outlined">delete</span></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-label="ID">#003</td>
+                            <td data-label="Cliente">Pedro Santos</td>
+                            <td data-label="Valor" class="valor">R$ 3.450,00</td>
+                            <td data-label="Status"><span class="status rejeitado">Rejeitado</span></td>
+                            <td data-label="Data" class="data">17/10/2023</td>
+                            <td data-label="Ações" class="acoes">
+                                <div class="actions">
+                                    <button class="action-btn edit" title="Editar"><span class="material-symbols-outlined">edit</span></button>
+                                    <button class="action-btn view" title="Visualizar"><span class="material-symbols-outlined">visibility</span></button>
+                                    <button class="action-btn delete" title="Deletar"><span class="material-symbols-outlined">delete</span></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-label="ID">#004</td>
+                            <td data-label="Cliente">Carla Lima</td>
+                            <td data-label="Valor" class="valor">R$ 950,00</td>
+                            <td data-label="Status"><span class="status aprovado">Aprovado</span></td>
+                            <td data-label="Data" class="data">18/10/2023</td>
+                            <td data-label="Ações" class="acoes">
+                                <div class="actions">
+                                    <button class="action-btn edit" title="Editar"><span class="material-symbols-outlined">edit</span></button>
+                                    <button class="action-btn view" title="Visualizar"><span class="material-symbols-outlined">visibility</span></button>
+                                    <button class="action-btn delete" title="Deletar"><span class="material-symbols-outlined">delete</span></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-label="ID">#005</td>
+                            <td data-label="Cliente">Marcos Souza</td>
+                            <td data-label="Valor" class="valor">R$ 5.000,00</td>
+                            <td data-label="Status"><span class="status pendente">Pendente</span></td>
+                            <td data-label="Data" class="data">19/10/2023</td>
+                            <td data-label="Ações" class="acoes">
+                                <div class="actions">
+                                    <button class="action-btn edit" title="Editar"><span class="material-symbols-outlined">edit</span></button>
+                                    <button class="action-btn view" title="Visualizar"><span class="material-symbols-outlined">visibility</span></button>
+                                    <button class="action-btn delete" title="Deletar"><span class="material-symbols-outlined">delete</span></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-label="ID">#006</td>
+                            <td data-label="Cliente">Fernanda Almeida</td>
+                            <td data-label="Valor" class="valor">R$ 2.100,00</td>
+                            <td data-label="Status"><span class="status aprovado">Aprovado</span></td>
+                            <td data-label="Data" class="data">20/10/2023</td>
+                            <td data-label="Ações" class="acoes">
+                                <div class="actions">
+                                    <button class="action-btn edit" title="Editar"><span class="material-symbols-outlined">edit</span></button>
+                                    <button class="action-btn view" title="Visualizar"><span class="material-symbols-outlined">visibility</span></button>
+                                    <button class="action-btn delete" title="Deletar"><span class="material-symbols-outlined">delete</span></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-label="ID">#007</td>
+                            <td data-label="Cliente">Ricardo Mendes</td>
+                            <td data-label="Valor" class="valor">R$ 800,00</td>
+                            <td data-label="Status"><span class="status rejeitado">Rejeitado</span></td>
+                            <td data-label="Data" class="data">21/10/2023</td>
+                            <td data-label="Ações" class="acoes">
+                                <div class="actions">
+                                    <button class="action-btn edit" title="Editar"><span class="material-symbols-outlined">edit</span></button>
+                                    <button class="action-btn view" title="Visualizar"><span class="material-symbols-outlined">visibility</span></button>
+                                    <button class="action-btn delete" title="Deletar"><span class="material-symbols-outlined">delete</span></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-label="ID">#008</td>
+                            <td data-label="Cliente">Juliana Ferreira</td>
+                            <td data-label="Valor" class="valor">R$ 4.200,00</td>
+                            <td data-label="Status"><span class="status pendente">Pendente</span></td>
+                            <td data-label="Data" class="data">22/10/2023</td>
+                            <td data-label="Ações" class="acoes">
+                                <div class="actions">
+                                    <button class="action-btn edit" title="Editar"><span class="material-symbols-outlined">edit</span></button>
+                                    <button class="action-btn view" title="Visualizar"><span class="material-symbols-outlined">visibility</span></button>
+                                    <button class="action-btn delete" title="Deletar"><span class="material-symbols-outlined">delete</span></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-label="ID">#009</td>
+                            <td data-label="Cliente">Lucas Barbosa</td>
+                            <td data-label="Valor" class="valor">R$ 1.750,00</td>
+                            <td data-label="Status"><span class="status aprovado">Aprovado</span></td>
+                            <td data-label="Data" class="data">23/10/2023</td>
+                            <td data-label="Ações" class="acoes">
+                                <div class="actions">
+                                    <button class="action-btn edit" title="Editar"><span class="material-symbols-outlined">edit</span></button>
+                                    <button class="action-btn view" title="Visualizar"><span class="material-symbols-outlined">visibility</span></button>
+                                    <button class="action-btn delete" title="Deletar"><span class="material-symbols-outlined">delete</span></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-label="ID">#010</td>
+                            <td data-label="Cliente">Patrícia Ramos</td>
+                            <td data-label="Valor" class="valor">R$ 2.900,00</td>
+                            <td data-label="Status"><span class="status pendente">Pendente</span></td>
+                            <td data-label="Data" class="data">24/10/2023</td>
+                            <td data-label="Ações" class="acoes">
+                                <div class="actions">
+                                    <button class="action-btn edit" title="Editar"><span class="material-symbols-outlined">edit</span></button>
+                                    <button class="action-btn view" title="Visualizar"><span class="material-symbols-outlined">visibility</span></button>
+                                    <button class="action-btn delete" title="Deletar"><span class="material-symbols-outlined">delete</span></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="pagination">
+                    <span class="pagination-info">Mostrando 1 a 10 de 50 resultados</span>
+                    <div class="page-btns">
+                        <button class="page-btn prev disabled">
+                            <span class="material-symbols-outlined">chevron_left</span>
+                            Anterior
+                        </button>
+                        <button class="page-btn next">
+                            Próxima
+                            <span class="material-symbols-outlined">chevron_right</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

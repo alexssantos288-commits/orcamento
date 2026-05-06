@@ -1,0 +1,411 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Minha App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        :root {
+            --petroleo: #2b6777;
+            --agua-marinha: #52ab98;
+            --azul-cinza: #c8d8e4;
+            --branco: #ffffff;
+            --cinza-claro: #f2f2f2;
+            --vermelho: #e74c3c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(135deg, var(--azul-cinza), var(--cinza-claro));
+            color: var(--petroleo);
+        }
+
+        .header {
+            background: var(--petroleo);
+            color: var(--branco);
+            padding: 1rem;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .header .logo {
+            font-size: 1.5rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .login-section {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+        }
+
+        .login-card {
+            background: var(--branco);
+            padding: 2.5rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(43, 103, 119, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .login-card h2 {
+            text-align: center;
+            color: var(--petroleo);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            font-weight: 500;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group .icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--azul-cinza);
+            font-size: 24px;
+            z-index: 1;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 14px 15px 14px 50px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--agua-marinha);
+            box-shadow: 0 0 0 3px rgba(82, 171, 152, 0.1);
+        }
+
+        .input-group input.valid {
+            border-color: var(--agua-marinha);
+        }
+
+        .input-group input.invalid {
+            border-color: var(--vermelho);
+        }
+
+        .error {
+            color: var(--vermelho);
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            display: block;
+            min-height: 1.25rem;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            margin: 1.5rem 0;
+            cursor: pointer;
+            font-size: 0.95rem;
+            color: var(--petroleo);
+            user-select: none;
+        }
+
+        .checkbox-container input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+        .checkmark {
+            position: relative;
+            height: 20px;
+            width: 20px;
+            background-color: var(--branco);
+            border: 2px solid #e1e5e9;
+            border-radius: 4px;
+            margin-right: 12px;
+            transition: all 0.3s;
+        }
+
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+            left: 6px;
+            top: 2px;
+            width: 5px;
+            height: 10px;
+            border: solid var(--branco);
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+        .checkbox-container input:checked ~ .checkmark {
+            background-color: var(--agua-marinha);
+            border-color: var(--agua-marinha);
+        }
+
+        .checkbox-container input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        #loginBtn {
+            width: 100%;
+            background: var(--agua-marinha);
+            color: var(--branco);
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        #loginBtn:hover:not(:disabled) {
+            background: #45a389;
+        }
+
+        #loginBtn:disabled {
+            background: #b8b8b8;
+            cursor: not-allowed;
+        }
+
+        .links {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .links a {
+            color: var(--petroleo);
+            text-decoration: none;
+            display: block;
+            margin: 0.75rem 0;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .links a:hover {
+            color: var(--agua-marinha);
+        }
+
+        .create-account {
+            font-weight: 500;
+        }
+
+        .error-message {
+            display: none;
+            color: var(--vermelho);
+            text-align: center;
+            padding: 1rem;
+            background: #fef2f2;
+            border: 1px solid #fde7e7;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .footer {
+            background: var(--petroleo);
+            color: var(--branco);
+            text-align: center;
+            padding: 1.5rem;
+            flex-shrink: 0;
+            font-size: 0.9rem;
+        }
+
+        @media (min-width: 768px) {
+            .login-card {
+                padding: 3rem;
+                max-width: 450px;
+            }
+
+            .header .logo {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <i class="material-icons">login</i>
+            Entrar na Conta
+        </div>
+    </header>
+
+    <section class="login-section">
+        <div class="login-card">
+            <h2>Bem-vindo de volta!</h2>
+            <form id="loginForm">
+                <div class="input-group">
+                    <i class="material-icons icon">email</i>
+                    <input type="email" id="email" placeholder="Digite seu email" required>
+                    <span class="error" id="emailError"></span>
+                </div>
+                <div class="input-group">
+                    <i class="material-icons icon">lock</i>
+                    <input type="password" id="password" placeholder="Digite sua senha" required>
+                    <span class="error" id="passwordError"></span>
+                </div>
+                <label class="checkbox-container">
+                    <input type="checkbox" id="remember">
+                    <span class="checkmark"></span>
+                    Lembrar-me
+                </label>
+                <button type="submit" id="loginBtn" disabled>
+                    Entrar
+                    <i class="material-icons">arrow_forward</i>
+                </button>
+                <div class="links">
+                    <a href="registrar.html" class="create-account">Criar conta</a>
+                    <a href="#" id="forgotPassword">Esqueceu a senha?</a>
+                </div>
+            </form>
+            <div id="loginError" class="error-message"></div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2024 Minha App. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            const rememberCheckbox = document.getElementById('remember');
+            const loginBtn = document.getElementById('loginBtn');
+            const emailError = document.getElementById('emailError');
+            const passwordError = document.getElementById('passwordError');
+            const loginError = document.getElementById('loginError');
+            const forgotLink = document.getElementById('forgotPassword');
+
+            // Load remembered email
+            const rememberedEmail = localStorage.getItem('rememberedEmail');
+            if (rememberedEmail) {
+                emailInput.value = rememberedEmail;
+                rememberCheckbox.checked = true;
+            }
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            function showFieldError(element, message) {
+                element.textContent = message;
+                element.style.display = 'block';
+            }
+
+            function hideFieldError(element) {
+                element.textContent = '';
+                element.style.display = 'none';
+            }
+
+            function setFieldValid(input, isValid) {
+                input.classList.toggle('valid', isValid);
+                input.classList.toggle('invalid', !isValid);
+            }
+
+            function validateEmail() {
+                const value = emailInput.value.trim();
+                if (!value) {
+                    showFieldError(emailError, 'Email é obrigatório');
+                    setFieldValid(emailInput, false);
+                    return false;
+                } else if (!emailRegex.test(value)) {
+                    showFieldError(emailError, 'Formato de email inválido');
+                    setFieldValid(emailInput, false);
+                    return false;
+                } else {
+                    hideFieldError(emailError);
+                    setFieldValid(emailInput, true);
+                    return true;
+                }
+            }
+
+            function validatePassword() {
+                const value = passwordInput.value;
+                if (!value) {
+                    showFieldError(passwordError, 'Senha é obrigatória');
+                    setFieldValid(passwordInput, false);
+                    return false;
+                } else if (value.length < 6) {
+                    showFieldError(passwordError, 'Senha deve ter no mínimo 6 caracteres');
+                    setFieldValid(passwordInput, false);
+                    return false;
+                } else {
+                    hideFieldError(passwordError);
+                    setFieldValid(passwordInput, true);
+                    return true;
+                }
+            }
+
+            function updateLoginButton() {
+                const isEmailValid = validateEmail();
+                const isPasswordValid = validatePassword();
+                loginBtn.disabled = !(isEmailValid && isPasswordValid);
+            }
+
+            emailInput.addEventListener('input', updateLoginButton);
+            passwordInput.addEventListener('input', updateLoginButton);
+
+            document.getElementById('loginForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                if (!validateEmail() || !validatePassword()) {
+                    return;
+                }
+
+                const email = emailInput.value.trim();
+                const password = passwordInput.value;
+
+                const users = JSON.parse(localStorage.getItem('users') || '[]');
+                const user = users.find(u => u.email === email && u.password === password);
+
+                if (user) {
+                    localStorage.setItem('token', `fake-jwt-${Date.now()}-${btoa(email)}`);
+                    if (rememberCheckbox.checked) {
+                        localStorage.setItem('rememberedEmail', email);
+                    } else {
+                        localStorage.removeItem('rememberedEmail');
+                    }
+                    window.location.href = 'dashboard/index.html';
+                } else {
+                    loginError.textContent = 'Email ou senha incorretos.';
+                    loginError.style.display = 'block';
+                }
+            });
+
+            forgotLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Funcionalidade de recuperação de senha em desenvolvimento.');
+            });
+        });
+    </script>
+</body>
+</html>

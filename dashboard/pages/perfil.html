@@ -1,0 +1,456 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil - Dashboard</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2b6777;
+            --accent: #52ab98;
+            --bg-light: #c8d8e4;
+            --white: #ffffff;
+            --gray: #f2f2f2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: var(--gray);
+            color: #333;
+        }
+
+        .app {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            z-index: 1001;
+        }
+
+        #toggleSidebar {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--primary);
+            margin-right: 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            flex: 1;
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 50px;
+            transition: background 0.3s;
+        }
+
+        .user-menu:hover {
+            background: var(--gray);
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 60px;
+            left: 0;
+            width: 250px;
+            height: calc(100vh - 60px);
+            background: var(--primary);
+            color: var(--white);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .sidebar.open {
+            transform: translateX(0);
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 20px 0;
+        }
+
+        .sidebar li {
+            margin: 0;
+        }
+
+        .sidebar a {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 25px;
+            color: var(--white);
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: var(--accent);
+        }
+
+        .main {
+            flex: 1;
+            margin-left: 0;
+            margin-top: 60px;
+            padding: 30px;
+            transition: margin-left 0.3s ease;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (min-width: 769px) {
+            .sidebar {
+                transform: translateX(0);
+                position: relative;
+                z-index: 1;
+            }
+
+            .main {
+                margin-left: 250px;
+            }
+
+            #toggleSidebar {
+                display: none;
+            }
+        }
+
+        .profile-container {
+            display: grid;
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .profile-photo-section {
+            text-align: center;
+        }
+
+        #profilePhoto {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--accent);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        #profilePhoto:hover {
+            transform: scale(1.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(82, 171, 152, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .main {
+                padding: 20px 15px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+        }
+
+        .password-section {
+            border-top: 1px solid #eee;
+            padding-top: 30px;
+            margin-top: 30px;
+        }
+
+        .password-section h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+            margin-top: 30px;
+        }
+
+        button {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-salvar {
+            background: var(--accent);
+            color: var(--white);
+        }
+
+        .btn-salvar:hover {
+            background: #45a389;
+        }
+
+        .btn-cancelar {
+            background: #ddd;
+            color: #666;
+        }
+
+        .btn-cancelar:hover {
+            background: #ccc;
+        }
+
+        .backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            display: none;
+        }
+
+        .backdrop.open {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .backdrop.open {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <header class="header">
+            <button id="toggleSidebar" class="material-icons">menu</button>
+            <div class="logo">Dashboard</div>
+            <div class="user-menu">
+                <i class="material-icons">account_circle</i>
+                <span>Usuário</span>
+            </div>
+        </header>
+
+        <aside class="sidebar" id="sidebar">
+            <ul>
+                <li><a href="#" class="active"><i class="material-icons">dashboard</i> Dashboard</a></li>
+                <li><a href="perfil.html"><i class="material-icons">person</i> Perfil</a></li>
+                <li><a href="#"><i class="material-icons">settings</i> Configurações</a></li>
+                <li><a href="#"><i class="material-icons">logout</i> Sair</a></li>
+            </ul>
+        </aside>
+
+        <div class="backdrop" id="backdrop"></div>
+
+        <main class="main">
+            <div class="profile-container">
+                <div class="card profile-photo-section">
+                    <img id="profilePhoto" src="https://via.placeholder.com/150/2b6777/white?text=Foto" alt="Foto de Perfil" />
+                    <input type="file" id="photoInput" accept="image/*" style="display: none;">
+                    <p style="margin-top: 15px; color: var(--primary);">Clique na foto para alterar</p>
+                </div>
+
+                <form class="card" id="profileForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nomeCompleto">Nome completo</label>
+                            <input type="text" id="nomeCompleto" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="telefone">Telefone</label>
+                            <input type="tel" id="telefone">
+                        </div>
+                        <div class="form-group">
+                            <label for="empresa">Empresa</label>
+                            <input type="text" id="empresa">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cpfCnpj">CPF/CNPJ</label>
+                        <input type="text" id="cpfCnpj">
+                    </div>
+
+                    <div class="password-section">
+                        <h3><i class="material-icons" style="vertical-align: middle;">lock</i> Alterar Senha</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="senhaAtual">Senha atual</label>
+                                <input type="password" id="senhaAtual">
+                            </div>
+                            <div class="form-group">
+                                <label for="novaSenha">Nova senha</label>
+                                <input type="password" id="novaSenha">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmarSenha">Confirmar nova senha</label>
+                            <input type="password" id="confirmarSenha">
+                        </div>
+                    </div>
+
+                    <div class="btn-group">
+                        <button type="button" class="btn-cancelar" id="btnCancelar">Cancelar</button>
+                        <button type="submit" class="btn-salvar">Salvar</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Elementos
+        const sidebar = document.getElementById('sidebar');
+        const toggleSidebar = document.getElementById('toggleSidebar');
+        const backdrop = document.getElementById('backdrop');
+        const profileForm = document.getElementById('profileForm');
+        const photoInput = document.getElementById('photoInput');
+        const profilePhoto = document.getElementById('profilePhoto');
+        const btnCancelar = document.getElementById('btnCancelar');
+
+        // Toggle sidebar
+        toggleSidebar.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+            backdrop.classList.toggle('open');
+        });
+
+        backdrop.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+            backdrop.classList.remove('open');
+        });
+
+        // Photo upload
+        profilePhoto.addEventListener('click', () => photoInput.click());
+        photoInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (ev) => {
+                    profilePhoto.src = ev.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Load data from localStorage
+        function loadData() {
+            const data = JSON.parse(localStorage.getItem('profileData')) || {};
+            document.getElementById('nomeCompleto').value = data.nomeCompleto || '';
+            document.getElementById('email').value = data.email || '';
+            document.getElementById('telefone').value = data.telefone || '';
+            document.getElementById('empresa').value = data.empresa || '';
+            document.getElementById('cpfCnpj').value = data.cpfCnpj || '';
+            if (data.photo) {
+                profilePhoto.src = data.photo;
+            }
+        }
+
+        // Save data
+        profileForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const novaSenha = document.getElementById('novaSenha').value;
+            const confirmarSenha = document.getElementById('confirmarSenha').value;
+
+            if (novaSenha && novaSenha !== confirmarSenha) {
+                alert('As novas senhas não coincidem!');
+                return;
+            }
+
+            const data = {
+                nomeCompleto: document.getElementById('nomeCompleto').value,
+                email: document.getElementById('email').value,
+                telefone: document.getElementById('telefone').value,
+                empresa: document.getElementById('empresa').value,
+                cpfCnpj: document.getElementById('cpfCnpj').value,
+                photo: profilePhoto.src
+            };
+
+            localStorage.setItem('profileData', JSON.stringify(data));
+            alert('Dados salvos com sucesso!');
+        });
+
+        // Cancelar
+        btnCancelar.addEventListener('click', loadData);
+
+        // Load on start
+        loadData();
+    </script>
+</body>
+</html>

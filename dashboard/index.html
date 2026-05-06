@@ -1,0 +1,429 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f2f2f2;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* WhatsApp Banner */
+        .whatsapp-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #52ab98;
+            color: #fff;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .whatsapp-banner .close-btn {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+
+        .whatsapp-banner .close-btn:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* Dashboard Container */
+        .dashboard {
+            display: flex;
+            flex: 1;
+            margin-top: 60px;
+            overflow: hidden;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 70px;
+            background: #2b6777;
+            transition: width 0.3s ease;
+            overflow: hidden;
+            z-index: 900;
+        }
+
+        .sidebar:hover {
+            width: 250px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding-top: 2rem;
+        }
+
+        .sidebar li a {
+            display: flex;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            color: #fff;
+            text-decoration: none;
+            transition: background 0.3s;
+            white-space: nowrap;
+        }
+
+        .sidebar li a:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .sidebar .material-symbols-outlined {
+            font-size: 24px;
+            margin-right: 1rem;
+            width: 24px;
+            flex-shrink: 0;
+        }
+
+        .sidebar li a span.text {
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .sidebar:hover li a span.text {
+            opacity: 1;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            background: #fff;
+            padding: 1.5rem 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .header h1 {
+            color: #2b6777;
+            font-size: 2rem;
+        }
+
+        .user-greeting {
+            color: #52ab98;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        /* Stats Cards */
+        .stats-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 5px solid #52ab98;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .card .material-symbols-outlined {
+            font-size: 48px;
+            color: #2b6777;
+            margin-right: 1.5rem;
+        }
+
+        .card h3 {
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .card p {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2b6777;
+            margin: 0;
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .quick-actions button {
+            background: linear-gradient(135deg, #52ab98, #2b6777);
+            color: #fff;
+            border: none;
+            padding: 1.5rem;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(82,171,152,0.3);
+        }
+
+        .quick-actions button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(82,171,152,0.4);
+        }
+
+        .quick-actions .material-symbols-outlined {
+            font-size: 24px;
+            margin-right: 1rem;
+        }
+
+        /* Table Section */
+        .table-section h2 {
+            color: #2b6777;
+            margin-bottom: 1rem;
+        }
+
+        .table-container {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #c8d8e4;
+        }
+
+        th {
+            background: #f2f2f2;
+            color: #2b6777;
+            font-weight: 600;
+        }
+
+        .status {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .status.aprovado {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status.pendente {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status.rejeitado {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .stats-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .table-container {
+                overflow-x: auto;
+            }
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+        }
+
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            font-feature-settings: 'liga';
+            -webkit-font-variation-settings: 'FILL 0, wght 400, GRAD 0, opsz 24';
+            font-variation-settings: 'FILL 0, wght 400, GRAD 0, opsz 24';
+        }
+    </style>
+</head>
+<body>
+    <!-- WhatsApp Banner -->
+    <div class="whatsapp-banner">
+        <span>Fale conosco pelo WhatsApp!</span>
+        <button class="close-btn" title="Fechar">X</button>
+    </div>
+
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <ul>
+                <li><a href="#"><span class="material-symbols-outlined">home</span><span class="text">Home</span></a></li>
+                <li><a href="#"><span class="material-symbols-outlined">people</span><span class="text">Clientes</span></a></li>
+                <li><a href="#"><span class="material-symbols-outlined">inventory_2</span><span class="text">Produtos</span></a></li>
+                <li><a href="#"><span class="material-symbols-outlined">description</span><span class="text">Orçamentos</span></a></li>
+                <li><a href="#"><span class="material-symbols-outlined">gavel</span><span class="text">Contratos</span></a></li>
+                <li><a href="#"><span class="material-symbols-outlined">settings</span><span class="text">Configurações</span></a></li>
+                <li><a href="#"><span class="material-symbols-outlined">logout</span><span class="text">Sair</span></a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <h1>Dashboard</h1>
+                <div class="user-greeting">Olá, João Silva</div>
+            </header>
+
+            <!-- Stats Cards -->
+            <section class="stats-cards">
+                <div class="card">
+                    <span class="material-symbols-outlined">people</span>
+                    <div>
+                        <h3>Total Clientes</h3>
+                        <p>1.234</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <span class="material-symbols-outlined">inventory_2</span>
+                    <div>
+                        <h3>Total Produtos</h3>
+                        <p>567</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <span class="material-symbols-outlined">description</span>
+                    <div>
+                        <h3>Orçamentos</h3>
+                        <p>89</p>
+                    </div>
+                </div>
+                <div class="card" style="border-left-color: #52ab98;">
+                    <span class="material-symbols-outlined">attach_money</span>
+                    <div>
+                        <h3>Receita Total</h3>
+                        <p>R$ 45.678</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Actions -->
+            <section class="quick-actions">
+                <button><span class="material-symbols-outlined">person_add</span>Novo Cliente</button>
+                <button><span class="material-symbols-outlined">inventory_2</span>Novo Produto</button>
+                <button><span class="material-symbols-outlined">description</span>Novo Orçamento</button>
+                <button><span class="material-symbols-outlined">gavel</span>Novo Contrato</button>
+            </section>
+
+            <!-- Table Section -->
+            <section class="table-section">
+                <h2>Últimos Orçamentos</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Cliente</th>
+                                <th>Valor</th>
+                                <th>Status</th>
+                                <th>Data</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>001</td>
+                                <td>João Silva</td>
+                                <td>R$ 1.200</td>
+                                <td><span class="status aprovado">Aprovado</span></td>
+                                <td>2023-10-01</td>
+                            </tr>
+                            <tr>
+                                <td>002</td>
+                                <td>Maria Oliveira</td>
+                                <td>R$ 2.500</td>
+                                <td><span class="status pendente">Pendente</span></td>
+                                <td>2023-10-02</td>
+                            </tr>
+                            <tr>
+                                <td>003</td>
+                                <td>Pedro Santos</td>
+                                <td>R$ 800</td>
+                                <td><span class="status aprovado">Aprovado</span></td>
+                                <td>2023-10-03</td>
+                            </tr>
+                            <tr>
+                                <td>004</td>
+                                <td>Ana Costa</td>
+                                <td>R$ 3.100</td>
+                                <td><span class="status rejeitado">Rejeitado</span></td>
+                                <td>2023-10-04</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

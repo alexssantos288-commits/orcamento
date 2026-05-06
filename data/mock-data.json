@@ -1,0 +1,24 @@
+﻿{
+    "orcamentos":  [
+                       {
+                           "cliente":  "João Silva",
+                           "status":  "Pendente",
+                           "id":  1,
+                           "valor":  5000
+                       }
+                   ],
+    "clientes":  [
+                     {
+                         "email":  "joao@email.com",
+                         "nome":  "João Silva",
+                         "id":  1
+                     }
+                 ],
+    "contratos":  [
+                      {
+                          "data":  "2023-10-01",
+                          "id":  1,
+                          "orcamentoId":  1
+                      }
+                  ]
+}

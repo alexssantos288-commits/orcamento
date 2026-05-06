@@ -1,0 +1,337 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orçamento Fácil - Gerencie suas Finanças com Inteligência</title>
+    <meta name="description" content="Controle seu orçamento pessoal de forma simples, automática e inteligente. Cadastre-se grátis e comece hoje!">
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Orçamento Fácil - Gerencie suas Finanças">
+    <meta property="og:description" content="A melhor ferramenta para gerenciar seu orçamento pessoal.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://seusite.com">
+    <meta property="og:image" content="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI2MzAiIHZpZXdCb3g9IjAgMCAxMjAwIDYzMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iNjMwIiBmaWxsPSIjMkI2Nzc3Ii8+Cjx0ZXh0IHg9IjYwMCIgeT0iMzE1IiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDAiIGZpbGw9IiNGRkZGRkYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5PcmNhbWVudG8gRmFjaWw8L3RleHQ+Cjwvc3ZnPg==">
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2b6777',
+                        secondary: '#52ab98',
+                        lightbg: '#c8d8e4',
+                        graybg: '#f2f2f2'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-[#f2f2f2] text-gray-800 font-sans">
+
+    <!-- Header / Navigation Section -->
+    <header class="bg-white shadow-xl sticky top-0 z-50 border-b border-[#c8d8e4]">
+        <nav class="container mx-auto px-6 py-6">
+            <div class="flex justify-between items-center flex-wrap">
+                <!-- Logo -->
+                <div class="text-3xl font-bold text-[#2b6777] order-1">
+                    Orçamento Fácil
+                </div>
+                <!-- Desktop Navigation Links -->
+                <ul class="hidden lg:flex space-x-12 order-3 w-full lg:w-auto lg:order-2 mt-8 lg:mt-0">
+                    <li><a href="#recursos" class="text-xl text-[#2b6777] hover:text-[#52ab98] font-semibold py-2 transition-colors data-section-nav">Recursos</a></li>
+                    <li><a href="#como" class="text-xl text-[#2b6777] hover:text-[#52ab98] font-semibold py-2 transition-colors data-section-nav">Como Funciona</a></li>
+                    <li><a href="#para-quem" class="text-xl text-[#2b6777] hover:text-[#52ab98] font-semibold py-2 transition-colors data-section-nav">Para Quem</a></li>
+                    <li><a href="#depoimentos" class="text-xl text-[#2b6777] hover:text-[#52ab98] font-semibold py-2 transition-colors data-section-nav">Depoimentos</a></li>
+                </ul>
+                <!-- Auth Buttons -->
+                <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 order-2 lg:order-3 w-full sm:w-auto mt-4 sm:mt-0">
+                    <a href="pages/login.html" class="bg-[#2b6777] text-white px-8 py-3 rounded-xl hover:bg-[#52ab98] font-bold text-lg text-center transition-all data-auth="login"">Entrar</a>
+                    <a href="pages/registrar.html" class="bg-[#52ab98] text-white px-8 py-3 rounded-xl hover:bg-[#2b6777] font-bold text-lg text-center transition-all data-auth="register"">Registrar Grátis</a>
+                </div>
+            </div>
+            <!-- Mobile Navigation Links (stacked) -->
+            <ul class="lg:hidden flex flex-col space-y-4 mt-6 pb-6 border-t border-[#c8d8e4] order-4 w-full">
+                <li><a href="#recursos" class="text-lg text-[#2b6777] hover:text-[#52ab98] font-semibold py-2 px-4 bg-[#c8d8e4]/50 rounded-lg transition-all data-section-nav">Recursos</a></li>
+                <li><a href="#como" class="text-lg text-[#2b6777] hover:text-[#52ab98] font-semibold py-2 px-4 bg-[#c8d8e4]/50 rounded-lg transition-all data-section-nav">Como Funciona</a></li>
+                <li><a href="#para-quem" class="text-lg text-[#2b6777] hover:text-[#52ab98] font-semibold py-2 px-4 bg-[#c8d8e4]/50 rounded-lg transition-all data-section-nav">Para Quem</a></li>
+                <li><a href="#depoimentos" class="text-lg text-[#2b6777] hover:text-[#52ab98] font-semibold py-2 px-4 bg-[#c8d8e4]/50 rounded-lg transition-all data-section-nav">Depoimentos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <main>
+    <section class="bg-gradient-to-br from-[#2b6777] via-[#2b6777] to-[#52ab98] text-white py-32 px-6 overflow-hidden" data-section="hero">
+        <div class="container mx-auto text-center max-w-4xl mx-auto">
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-black mb-8 leading-tight drop-shadow-2xl">Gerencie seu
+                <span class="text-[#52ab98] block">Orçamento</span>
+                com Facilidade
+            </h1>
+            <p class="text-xl md:text-2xl lg:text-3xl mb-12 opacity-95 leading-relaxed drop-shadow-lg">Controle suas finanças pessoais de forma simples, automática e inteligente. Alcance suas metas financeiras agora!</p>
+            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                <a href="pages/registrar.html"
+                   class="bg-white text-[#2b6777] px-12 py-6 rounded-2xl font-bold text-xl hover:shadow-2xl hover:scale-105 transform transition-all duration-300 shadow-xl data-cta="register"">Comece Grátis Agora</a>
+                <a href="#recursos"
+                   class="border-4 border-white/50 text-white px-12 py-6 rounded-2xl font-bold text-xl hover:bg-white hover:text-[#2b6777] hover:shadow-2xl hover:scale-105 transform transition-all duration-300 backdrop-blur-sm data-cta="learn"">Descubra Mais</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recursos Section -->
+    <section id="recursos" class="py-32 px-6 bg-white" data-section="recursos">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-20">
+                <h2 class="text-5xl md:text-6xl font-black text-[#2b6777] mb-6">Recursos Poderosos</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Tudo o que você precisa para dominar suas finanças em um só lugar.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="group p-10 bg-gradient-to-b from-[#f2f2f2] to-white rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-4 border border-[#c8d8e4]/50">
+                    <div class="w-24 h-24 mx-auto mb-8 bg-[#52ab98] rounded-3xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-12 h-12">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-[#2b6777] mb-6 text-center group-hover:text-[#52ab98] transition-colors">Categorização Automática</h3>
+                    <p class="text-lg text-gray-600 text-center leading-relaxed">Suas despesas são organizadas automaticamente por categorias inteligentes.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="group p-10 bg-gradient-to-b from-[#f2f2f2] to-white rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-4 border border-[#c8d8e4]/50">
+                    <div class="w-24 h-24 mx-auto mb-8 bg-[#52ab98] rounded-3xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-12 h-12">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-[#2b6777] mb-6 text-center group-hover:text-[#52ab98] transition-colors">Relatórios Visuais</h3>
+                    <p class="text-lg text-gray-600 text-center leading-relaxed">Gráficos e insights claros para entender onde seu dinheiro vai.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="group p-10 bg-gradient-to-b from-[#f2f2f2] to-white rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-4 border border-[#c8d8e4]/50">
+                    <div class="w-24 h-24 mx-auto mb-8 bg-[#52ab98] rounded-3xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-12 h-12">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-[#2b6777] mb-6 text-center group-hover:text-[#52ab98] transition-colors">Metas Personalizadas</h3>
+                    <p class="text-lg text-gray-600 text-center leading-relaxed">Defina e acompanhe suas metas financeiras com alertas inteligentes.</p>
+                </div>
+                <!-- Feature 4 -->
+                <div class="group p-10 bg-gradient-to-b from-[#f2f2f2] to-white rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-4 border border-[#c8d8e4]/50 lg:col-span-2 md:col-span-2">
+                    <div class="w-24 h-24 mx-auto mb-8 bg-[#52ab98] rounded-3xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-12 h-12">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-[#2b6777] mb-6 text-center group-hover:text-[#52ab98] transition-colors">Alertas em Tempo Real</h3>
+                    <p class="text-lg text-gray-600 text-center leading-relaxed max-w-2xl mx-auto">Receba notificações instantâneas quando estiver perto de ultrapassar seu orçamento.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Como Funciona Section -->
+    <section id="como" class="py-32 px-6 bg-[#c8d8e4]" data-section="como">
+        <div class="container mx-auto max-w-5xl">
+            <div class="text-center mb-20">
+                <h2 class="text-5xl md:text-6xl font-black text-[#2b6777] mb-6">Como Funciona em 4 Passos</h2>
+                <p class="text-xl text-gray-700 max-w-2xl mx-auto">Simples assim. Comece em minutos.</p>
+            </div>
+            <div class="grid md:grid-cols-4 gap-8 items-center">
+                <div class="text-center group p-8">
+                    <div class="w-20 h-20 mx-auto mb-6 bg-[#52ab98] text-white rounded-3xl flex items-center justify-center font-bold text-2xl shadow-2xl group-hover:scale-110 transition-all">1</div>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-16 h-16 mx-auto mb-6 text-[#2b6777] group-hover:scale-110 transition-all">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
+                    </svg>
+                    <h3 class="text-2xl font-bold text-[#2b6777] mb-4">Cadastre-se</h3>
+                    <p class="text-lg text-gray-700">Crie sua conta gratuita em menos de 1 minuto.</p>
+                </div>
+                <div class="text-center group p-8">
+                    <div class="w-20 h-20 mx-auto mb-6 bg-[#52ab98] text-white rounded-3xl flex items-center justify-center font-bold text-2xl shadow-2xl group-hover:scale-110 transition-all">2</div>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-16 h-16 mx-auto mb-6 text-[#2b6777] group-hover:scale-110 transition-all">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zm10.005 6.48a.75.75 0 01-.017.71l1.07 3.292a.75.75 0 01-.644.88h-5.76a.75.75 0 01-.744-.88l1.07-3.292a.75.75 0 01.017-.71l1.993-6.24a.75.75 0 011.44-.494l2.639 1.32a.75.75 0 01.494 1.44l-2.653 1.31z" />
+                    </svg>
+                    <h3 class="text-2xl font-bold text-[#2b6777] mb-4">Adicione Transações</h3>
+                    <p class="text-lg text-gray-700">Registre receitas e despesas rapidamente.</p>
+                </div>
+                <div class="text-center group p-8">
+                    <div class="w-20 h-20 mx-auto mb-6 bg-[#52ab98] text-white rounded-3xl flex items-center justify-center font-bold text-2xl shadow-2xl group-hover:scale-110 transition-all">3</div>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-16 h-16 mx-auto mb-6 text-[#2b6777] group-hover:scale-110 transition-all">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5a2 2 0 00-2 2v4.568c0 .94.436 1.833 1.237 2.518l7.498 7.5a1.5 1.5 0 002.12 0L19.5 17.372a1.5 1.5 0 000-2.12l-7.5-7.498a1.5 1.5 0 00-2.518-1.237zM12 9a1 1 0 100-2 1 1 0 000 2z" />
+                    </svg>
+                    <h3 class="text-2xl font-bold text-[#2b6777] mb-4">Categorize</h3>
+                    <p class="text-lg text-gray-700">Sistema automático organiza tudo para você.</p>
+                </div>
+                <div class="text-center group p-8">
+                    <div class="w-20 h-20 mx-auto mb-6 bg-[#52ab98] text-white rounded-3xl flex items-center justify-center font-bold text-2xl shadow-2xl group-hover:scale-110 transition-all">4</div>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-16 h-16 mx-auto mb-6 text-[#2b6777] group-hover:scale-110 transition-all">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM10.333 17.519A5.5 5.5 0 0112 12c0-.627.121-1.229.341-1.817.108-.281.814-1.685 1.438-1.987A7.959 7.959 0 0012 7.5a7.959 7.959 0 00-1.48 1.335c-.624-.302-1.33-1.706-1.438-1.987A7.963 7.963 0 009 12c0 1.552.266 3.045.749 4.519zM18.333 17.519A5.5 5.5 0 0119.5 12c0-.627-.121-1.229-.341-1.817-.108-.281-.814-1.685-1.438-1.987A7.959 7.959 0 0118 7.5a7.959 7.959 0 011.48 1.335c.624-.302 1.33-1.706 1.438-1.987A7.963 7.963 0 0020 12c0 1.552-.266 3.045-.749 4.519z" />
+                    </svg>
+                    <h3 class="text-2xl font-bold text-[#2b6777] mb-4">Analise & Ajuste</h3>
+                    <p class="text-lg text-gray-700">Veja relatórios e ajuste seu orçamento em tempo real.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Para Quem Section -->
+    <section id="para-quem" class="py-32 px-6 bg-white" data-section="para-quem">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-20">
+                <h2 class="text-5xl md:text-6xl font-black text-[#2b6777] mb-6">Perfeito Para</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Qualquer pessoa ou negócio que queira controle total das finanças.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="group p-10 bg-gradient-to-b from-[#f2f2f2] to-white rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-4 border border-[#c8d8e4]/50 text-center">
+                    <div class="w-24 h-24 mx-auto mb-8 bg-[#52ab98] rounded-3xl flex items-center justify-center group-hover:scale-110 transition-all">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-12 h-12">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-18v18M6 9h3.5M12 9h3.5M18 9h3.5" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-[#2b6777] mb-6 group-hover:text-[#52ab98] transition-colors">Famílias</h3>
+                    <p class="text-lg text-gray-600 leading-relaxed">Controle gastos familiares, economize para viagens e educação dos filhos.</p>
+                </div>
+                <div class="group p-10 bg-gradient-to-b from-[#f2f2f2] to-white rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-4 border border-[#c8d8e4]/50 text-center">
+                    <div class="w-24 h-24 mx-auto mb-8 bg-[#52ab98] rounded-3xl flex items-center justify-center group-hover:scale-110 transition-all">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-12 h-12">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v-.78a2.25 2.25 0 00-1.5-2.12l-.75-1.5L15 8.25a2.25 2.25 0 00-2.12-1.5H12v-.78a2.25 2.25 0 00-1.5-2.12l-3-1.5A2.25 2.25 0 005.25 3.75v6.75c0 .414.168.81.469 1.094l2.006 2.006a2.25 2.25 0 001.5 1.5l3 1.5a2.25 2.25 0 001.5 1.5l2.25 1.125a2.25 2.25 0 001.5 1.5v4.125a2.25 2.25 0 01-2.25 2.25h-8.5a2.25 2.25 0 01-2.25-2.25v-4.125a2.25 2.25 0 01.75-.75l1.5-1.5a2.25 2.25 0 011.5-1.5l3-1.5a2.25 2.25 0 011.5-1.5l2.006-2.006c.284-.284.469-.68.469-1.094v-.78z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-[#2b6777] mb-6 group-hover:text-[#52ab98] transition-colors">Freelancers</h3>
+                    <p class="text-lg text-gray-600 leading-relaxed">Gerencie renda variável, impostos e fluxos de caixa irregulares.</p>
+                </div>
+                <div class="group p-10 bg-gradient-to-b from-[#f2f2f2] to-white rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-4 border border-[#c8d8e4]/50 text-center">
+                    <div class="w-24 h-24 mx-auto mb-8 bg-[#52ab98] rounded-3xl flex items-center justify-center group-hover:scale-110 transition-all">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-12 h-12">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-[#2b6777] mb-6 group-hover:text-[#52ab98] transition-colors">Pequenas Empresas</h3>
+                    <p class="text-lg text-gray-600 leading-relaxed">Controle custos operacionais e fluxo de caixa do seu negócio.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Depoimentos Section -->
+    <section id="depoimentos" class="py-32 px-6 bg-[#f2f2f2]" data-section="depoimentos">
+        <div class="container mx-auto max-w-4xl">
+            <div class="text-center mb-20">
+                <h2 class="text-5xl md:text-6xl font-black text-[#2b6777] mb-6">O que Nossos Usuários Dizem</h2>
+                <p class="text-xl text-gray-600">Milhares de pessoas já transformaram suas finanças conosco.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <blockquote class="bg-white p-10 rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 border border-[#c8d8e4]/50 relative">
+                    <div class="absolute top-6 left-6 w-12 h-12 bg-gradient-to-br from-[#2b6777] to-[#52ab98] rounded-2xl flex items-center justify-center text-white font-bold text-xl">JM</div>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20" class="w-12 h-12 text-[#52ab98] mb-6 mx-auto opacity-75">
+                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                    </svg>
+                    <p class="text-xl italic mb-8 text-gray-700 leading-relaxed text-lg">“Mudou completamente como eu vejo minhas finanças. Economizei 30% em 2 meses!”</p>
+                    <div class="flex items-center">
+                        <div class="flex space-x-1 mr-4">
+                            <svg fill="currentColor" viewBox="0 0 20 20" class="w-5 h-5 text-yellow-400"><path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.38 1.373c-.836.262-1.17.95-.81 1.563l3.348 3.265-1.065 4.904c-.207.956.529 1.686 1.392 1.396l4.384-1.307 4.384 1.307c.863.29 1.599-.44 1.392-1.396l-1.065-4.904 3.348-3.265c.361-.613.026-1.301-.81-1.563l-4.38-1.373-1.83-4.401z" clip-rule="evenodd"/></svg>
+                            <svg fill="currentColor" viewBox="0 0 20 20" class="w-5 h-5 text-yellow-400"><path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.38 1.373c-.836.262-1.17.95-.81 1.563l3.348 3.265-1.065 4.904c-.207.956.529 1.686 1.392 1.396l4.384-1.307 4.384 1.307c.863.29 1.599-.44 1.392-1.396l-1.065-4.904 3.348-3.265c.361-.613.026-1.301-.81-1.563l-4.38-1.373-1.83-4.401z" clip-rule="evenodd"/></svg>
+                            <svg fill="currentColor" viewBox="0 0 20 20" class="w-5 h-5 text-yellow-400"><path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.38 1.373c-.836.262-1.17.95-.81 1.563l3.348 3.265-1.065 4.904c-.207.956.529 1.686 1.392 1.396l4.384-1.307 4.384 1.307c.863.29 1.599-.44 1.392-1.396l-1.065-4.904 3.348-3.265c.361-.613.026-1.301-.81-1.563l-4.38-1.373-1.83-4.401z" clip-rule="evenodd"/></svg>
+                            <svg fill="currentColor" viewBox="0 0 20 20" class="w-5 h-5 text-yellow-400"><path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.38 1.373c-.836.262-1.17.95-.81 1.563l3.348 3.265-1.065 4.904c-.207.956.529 1.686 1.392 1.396l4.384-1.307 4.384 1.307c.863.29 1.599-.44 1.392-1.396l-1.065-4.904 3.348-3.265c.361-.613.026-1.301-.81-1.563l-4.38-1.373-1.83-4.401z" clip-rule="evenodd"/></svg>
+                            <svg fill="currentColor" viewBox="0 0 20 20" class="w-5 h-5 text-yellow-400"><path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.38 1.373c-.836.262-1.17.95-.81 1.563l3.348 3.265-1.065 4.904c-.207.956.529 1.686 1.392 1.396l4.384-1.307 4.384 1.307c.863.29 1.599-.44 1.392-1.396l-1.065-4.904 3.348-3.265c.361-.613.026-1.301-.81-1.563l-4.38-1.373-1.83-4.401z" clip-rule="evenodd"/></svg>
+                        </div>
+                        <div>
+                            <p class="font-bold text-[#2b6777] text-lg">João Mendes</p>
+                            <p class="text-gray-500">Freelancer</p>
+                        </div>
+                    </div>
+                </blockquote>
+                <!-- Testimonial 2 -->
+                <blockquote class="bg-white p-10 rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 border border-[#c8d8e4]/50 relative">
+                    <div class="absolute top-6 left-6 w-12 h-12 bg-gradient-to-br from-[#52ab98] to-[#2b6777] rounded-2xl flex items-center justify-center text-white font-bold text-xl">AM</div>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20" class="w-12 h-12 text-[#52ab98] mb-6 mx-auto opacity-75">
+                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                    </svg>
+                    <p class="text-xl italic mb-8 text-gray-700 leading-relaxed text-lg">“Interface intuitiva e relatórios incríveis. Recomendo para todos!”</p>
+                    <div class="flex items-center">
+                        <div class="flex space-x-1 mr-4">
+                            <svg fill="currentColor" viewBox="0 0 20 20" class="w-5 h-5 text-yellow-400"><path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.38 1.373c-.836.262-1.17.95-.81 1.563l3.348 3.265-1.065 4.904c-.207.956.529 1.686 1.392 1.396l4.384-1.307 4.384 1.307c.863.29 1.599-.44 1.392-1.396l-1.065-4.904 3.348-3.265c.361-.613.026-1.301-.81-1.563l-4.38-1.373-1.83-4.401z" clip-rule="evenodd"/></svg>
+                            <svg fill="currentColor" viewBox="0 0 20 20" class="w-5 h-5 text-yellow-400"><path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.38 1.373c-.836.262-1.17.95-.81 1.563l3.348 3.265-1.065 4.904c-.207.956.529 1.686 1.392 1.396l4.384-1.307 4.384 1.307c.863.29 1.599-.44 1.392-1.396l-1.065-4.904 3.348-3.265c.361-.613.026-1.301-.81-1.563l-4.38-1.373-1.83-4.401z" clip-rule="evenodd"/></svg>
+                            <svg fill="currentColor" viewBox="0 0 20 20" class="w-5 h-5 text-yellow-400"><path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.38 1.373c-.836.262-1.17.95-.81 1.563l3.348 3.265-1.065 4.904c-.207.956.529 1.686 1.392 1.396l4.384-1.307 4.384 1.307c.863.29 1.599-.44 1.392-1.396l-1.065-4.904 3.348-3.265c.361-.613.026-1.301-.81-1.563l-4.38-1.373-1.83-4.401z" clip-rule="evenodd"/></svg>
+                            <svg fill="currentColor" viewBox="0 0 20 20" class="w-5 h-5 text-yellow-400"><path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.38 1.373c-.836.262-1.17.95-.81 1.563l3.348 3.265-1.065 4.904c-.207.956.529 1.686 1.392 1.396l4.384-1.307 4.384 1.307c.863.29 1.599-.44 1.392-1.396l-1.065-4.904 3.348-3.265c.361-.613.026-1.301-.81-1.563l-4.38-1.373-1.83-4.401z" clip-rule="evenodd"/></svg>
+                            <svg fill="currentColor" viewBox="0 0 20 20" class="w-5 h-5 text-yellow-400"><path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.38 1.373c-.836.262-1.17.95-.81 1.563l3.348 3.265-1.065 4.904c-.207.956.529 1.686 1.392 1.396l4.384-1.307 4.384 1.307c.863.29 1.599-.44 1.392-1.396l-1.065-4.904 3.348-3.265c.361-.613.026-1.301-.81-1.563l-4.38-1.373-1.83-4.401z" clip-rule="evenodd"/></svg>
+                        </div>
+                        <div>
+                            <p class="font-bold text-[#2b6777] text-lg">Ana Moreira</p>
+                            <p class="text-gray-500">Mãe de Família</p>
+                        </div>
+                    </div>
+                </blockquote>
+                <!-- Testimonial 3 -->
+                <blockquote class="bg-white p-10 rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 border border-[#c8d8e4]/50 relative">
+                    <div class="absolute top-6 left-6 w-12 h-12 bg-gradient-to-br from-[#2b6777] to-[#52ab98] rounded-2xl flex items-center justify-center text-white font-bold text-xl">RS</div>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20" class="w-12 h-12 text-[#52ab98] mb-6 mx-auto opacity-75">
+                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                    </svg>
+                    <p class="text-xl italic mb-8 text-gray-700 leading-relaxed text-lg">“Ferramenta essencial para meu pequeno negócio. Fluxo de caixa nunca foi tão claro!”</p>
+                    <div class="flex items-center">
+                        <div class="flex space-x-1 mr-4">
+                            <svg fill="currentColor" viewBox="0 0 20 20" class="w-5 h-5 text-yellow-400"><path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.38 1.373c-.836.262-1.17.95-.81 1.563l3.348 3.265-1.065 4.904c-.207.956.529 1.686 1.392 1.396l4.384-1.307 4.384 1.307c.863.29 1.599-.44 1.392-1.396l-1.065-4.904 3.348-3.265c.361-.613.026-1.301-.81-1.563l-4.38-1.373-1.83-4.401z" clip-rule="evenodd"/></svg>
+                            <svg fill="currentColor" viewBox="0 0 20 20" class="w-5 h-5 text-yellow-400"><path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.38 1.373c-.836.262-1.17.95-.81 1.563l3.348 3.265-1.065 4.904c-.207.956.529 1.686 1.392 1.396l4.384-1.307 4.384 1.307c.863.29 1.599-.44 1.392-1.396l-1.065-4.904 3.348-3.265c.361-.613.026-1.301-.81-1.563l-4.38-1.373-1.83-4.401z" clip-rule="evenodd"/></svg>
+                            <svg fill="currentColor" viewBox="0 0 20 20" class="w-5 h-5 text-yellow-400"><path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.38 1.373c-.836.262-1.17.95-.81 1.563l3.348 3.265-1.065 4.904c-.207.956.529 1.686 1.392 1.396l4.384-1.307 4.384 1.307c.863.29 1.599-.44 1.392-1.396l-1.065-4.904 3.348-3.265c.361-.613.026-1.301-.81-1.563l-4.38-1.373-1.83-4.401z" clip-rule="evenodd"/></svg>
+                            <svg fill="currentColor" viewBox="0 0 20 20" class="w-5 h-5 text-yellow-400"><path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.38 1.373c-.836.262-1.17.95-.81 1.563l3.348 3.265-1.065 4.904c-.207.956.529 1.686 1.392 1.396l4.384-1.307 4.384 1.307c.863.29 1.599-.44 1.392-1.396l-1.065-4.904 3.348-3.265c.361-.613.026-1.301-.81-1.563l-4.38-1.373-1.83-4.401z" clip-rule="evenodd"/></svg>
+                            <svg fill="currentColor" viewBox="0 0 20 20" class="w-5 h-5 text-yellow-400"><path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.38 1.373c-.836.262-1.17.95-.81 1.563l3.348 3.265-1.065 4.904c-.207.956.529 1.686 1.392 1.396l4.384-1.307 4.384 1.307c.863.29 1.599-.44 1.392-1.396l-1.065-4.904 3.348-3.265c.361-.613.026-1.301-.81-1.563l-4.38-1.373-1.83-4.401z" clip-rule="evenodd"/></svg>
+                        </div>
+                        <div>
+                            <p class="font-bold text-[#2b6777] text-lg">Roberto Silva</p>
+                            <p class="text-gray-500">Dono de Pequena Empresa</p>
+                        </div>
+                    </div>
+                </blockquote>
+            </div>
+        </div>
+    </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-[#2b6777] text-white py-20 px-6 mt-20" data-section="footer">
+        <div class="container mx-auto grid md:grid-cols-4 gap-12">
+            <div>
+                <h3 class="text-3xl font-black mb-6">Orçamento Fácil</h3>
+                <p class="text-[#c8d8e4] mb-6 leading-relaxed">A ferramenta definitiva para controle financeiro pessoal e empresarial.</p>
+                <div class="flex space-x-4">
+                    <a href="#recursos" class="hover:text-[#52ab98] transition-colors data-section-nav">Recursos</a>
+                    <a href="#como" class="hover:text-[#52ab98] transition-colors data-section-nav">Como Funciona</a>
+                    <a href="#depoimentos" class="hover:text-[#52ab98] transition-colors data-section-nav">Depoimentos</a>
+                </div>
+            </div>
+            <div>
+                <h4 class="text-xl font-bold mb-6">Produto</h4>
+                <ul class="space-y-3 text-[#c8d8e4]">
+                    <li><a href="#recursos" class="hover:text-white transition-colors">Recursos</a></li>
+                    <li><a href="#como" class="hover:text-white transition-colors">Como Funciona</a></li>
+                    <li><a href="pages/registrar.html" class="hover:text-[#52ab98] transition-colors">Começar</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-xl font-bold mb-6">Suporte</h4>
+                <ul class="space-y-3 text-[#c8d8e4]">
+                    <li><a href="pages/login.html" class="hover:text-white transition-colors">Entrar</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Ajuda</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Contato</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-xl font-bold mb-6">Fique por Dentro</h4>
+                <p class="text-[#c8d8e4] mb-4">Receba dicas de finanças no seu email.</p>
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <input type="email" placeholder="seu@email.com" class="px-4 py-3 rounded-xl text-gray-800 flex-1 focus:outline-none focus:ring-4 focus:ring-[#52ab98]/50">
+                    <button class="bg-[#52ab98] px-8 py-3 rounded-xl font-bold hover:bg-[#2b6777] transition-all data-newsletter">Inscrever</button>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-[#c8d8e4]/50 mt-16 pt-12 text-center text-[#c8d8e4]">
+            <p>&copy; 2024 Orçamento Fácil. Todos os direitos reservados. | <a href="pages/privacidade.html" class="hover:text-[#52ab98] transition-colors">Privacidade</a> | <a href="pages/termos.html" class="hover:text-[#52ab98] transition-colors">Termos</a></p>
+        </div>
+    </footer>
+
+</body>
+</html>
+</html>

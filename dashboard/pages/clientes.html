@@ -1,0 +1,608 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Clientes</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+    <!-- Include components -->
+    <include src="../components/header.html"></include>
+    <include src="../components/sidebar.html"></include>
+    <main>
+        <h1>Clientes</h1>
+        
+        <p>Conteúdo da página <strong>Clientes</strong> em desenvolvimento.</p>
+    </main>
+    <include src="../components/footer.html"></include>
+    <script src="../js/dashboard.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clientes - Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2b6777;
+            --accent: #52ab98;
+            --light: #c8d8e4;
+            --white: #ffffff;
+            --gray: #f2f2f2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: var(--gray);
+            color: #333;
+        }
+
+        .dashboard {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: var(--primary);
+            color: white;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-header {
+            padding: 2rem 2rem 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .sidebar-header h2 {
+            font-size: 1.5rem;
+            font-weight: 300;
+        }
+
+        .sidebar nav a {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 2rem;
+            color: white;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .sidebar nav a:hover,
+        .sidebar nav a.active {
+            background: var(--accent);
+        }
+
+        .sidebar nav i {
+            font-size: 24px;
+            width: 24px;
+            opacity: 0.9;
+        }
+
+        .main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: var(--gray);
+        }
+
+        header {
+            background: var(--white);
+            padding: 1.5rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 28px;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        h1 {
+            margin: 0;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.8rem;
+            font-weight: 400;
+        }
+
+        h1 i {
+            font-size: 32px;
+        }
+
+        .user {
+            background: var(--accent);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .content {
+            flex: 1;
+            padding: 2rem;
+            overflow: auto;
+        }
+
+        .filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filters input,
+        .filters select {
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--light);
+            border-radius: 8px;
+            font-size: 1rem;
+            flex: 1;
+            min-width: 250px;
+            background: var(--white);
+        }
+
+        .filters input::placeholder {
+            color: #999;
+        }
+
+        .table-container {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead th {
+            background: var(--primary);
+            color: var(--white);
+            padding: 1.25rem 1rem;
+            text-align: left;
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        tbody td {
+            padding: 1.25rem 1rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        tbody tr:nth-child(even) {
+            background: #fafafa;
+        }
+
+        tbody tr:hover {
+            background: var(--light) !important;
+        }
+
+        .status {
+            text-align: center;
+        }
+
+        .badge {
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .badge.sim {
+            background: #52ab98;
+            color: white;
+        }
+
+        .badge.nao {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .actions {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 0.5rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            transition: transform 0.2s;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        .btn i {
+            font-size: 20px;
+        }
+
+        .btn-edit {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-view {
+            background: #3498db;
+            color: white;
+        }
+
+        .btn-delete {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .sidebar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100vh;
+                width: 280px;
+                z-index: 1001;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            body.sidebar-open .sidebar {
+                transform: translateX(0);
+            }
+
+            body.sidebar-open .sidebar-overlay {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .content {
+                padding: 1rem;
+            }
+
+            .filters input,
+            .filters select {
+                min-width: 100%;
+            }
+
+            .responsive-table thead {
+                display: none;
+            }
+
+            .responsive-table tbody tr {
+                display: block;
+                margin-bottom: 1.5rem;
+                border: 1px solid var(--light);
+                border-radius: 12px;
+                padding: 1.5rem;
+                background: var(--white);
+                box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            }
+
+            .responsive-table tbody td {
+                display: block;
+                border: none;
+                position: relative;
+                padding: 0.75rem 0 0.75rem 50%;
+                text-align: right;
+                min-height: 3rem;
+            }
+
+            .responsive-table tbody td:before {
+                content: attr(data-label);
+                position: absolute;
+                left: 1rem;
+                width: 45%;
+                padding-right: 1rem;
+                font-weight: 500;
+                color: var(--primary);
+                text-align: left;
+                top: 0.75rem;
+            }
+
+            .responsive-table .actions {
+                padding-left: 1rem;
+                text-align: center;
+                padding-bottom: 0;
+            }
+
+            .responsive-table .actions:before {
+                display: none;
+            }
+
+            .responsive-table .actions .btn {
+                width: 44px;
+                height: 44px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="sidebar-overlay"></div>
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Dashboard</h2>
+            </div>
+            <nav>
+                <a href="../index.html"><i class="material-icons">dashboard</i> Dashboard</a>
+                <a href="orcamentos.html"><i class="material-icons">description</i> Orçamentos</a>
+                <a href="contratos.html"><i class="material-icons">assignment</i> Contratos</a>
+                <a href="clientes.html" class="active"><i class="material-icons">people</i> Clientes</a>
+            </nav>
+        </aside>
+        <main class="main">
+            <header>
+                <button class="menu-toggle"><i class="material-icons">menu</i></button>
+                <h1><i class="material-icons">person</i> Clientes</h1>
+                <div class="user">
+                    <i class="material-icons">account_circle</i>
+                    Admin
+                </div>
+            </header>
+            <div class="content">
+                <div class="filters">
+                    <input type="text" id="search" placeholder="Buscar por Nome, Email ou CPF/CNPJ">
+                    <select id="statusFilter">
+                        <option value="Todos">Todos</option>
+                        <option value="Ativo">Ativo</option>
+                        <option value="Inativo">Inativo</option>
+                    </select>
+                </div>
+                <div class="table-container">
+                    <table class="responsive-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Email</th>
+                                <th>Telefone</th>
+                                <th>CPF/CNPJ</th>
+                                <th>Data Cadastro</th>
+                                <th>Ativo</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="clientTableBody">
+                            <tr>
+                                <td data-label="ID:">1</td>
+                                <td data-label="Nome:">João Silva</td>
+                                <td data-label="Email:">joao@exemplo.com</td>
+                                <td data-label="Telefone:">(11) 98765-4321</td>
+                                <td data-label="CPF/CNPJ:">123.456.789-00</td>
+                                <td data-label="Data Cadastro:">15/01/2023</td>
+                                <td data-label="Ativo:" class="status"><span class="badge sim">Sim</span></td>
+                                <td data-label="Ações:" class="actions">
+                                    <button class="btn btn-edit" title="Editar"><i class="material-icons">edit</i></button>
+                                    <button class="btn btn-view" title="Visualizar"><i class="material-icons">visibility</i></button>
+                                    <button class="btn btn-delete" title="Deletar"><i class="material-icons">delete</i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td data-label="ID:">2</td>
+                                <td data-label="Nome:">Maria Oliveira</td>
+                                <td data-label="Email:">maria@exemplo.com</td>
+                                <td data-label="Telefone:">(21) 99876-5432</td>
+                                <td data-label="CPF/CNPJ:">987.654.321-00</td>
+                                <td data-label="Data Cadastro:">20/02/2023</td>
+                                <td data-label="Ativo:" class="status"><span class="badge sim">Sim</span></td>
+                                <td data-label="Ações:" class="actions">
+                                    <button class="btn btn-edit" title="Editar"><i class="material-icons">edit</i></button>
+                                    <button class="btn btn-view" title="Visualizar"><i class="material-icons">visibility</i></button>
+                                    <button class="btn btn-delete" title="Deletar"><i class="material-icons">delete</i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td data-label="ID:">3</td>
+                                <td data-label="Nome:">ABC Ltda</td>
+                                <td data-label="Email:">contato@abc.com</td>
+                                <td data-label="Telefone:">(11) 20000-0000</td>
+                                <td data-label="CPF/CNPJ:">12.345.678/0001-90</td>
+                                <td data-label="Data Cadastro:">10/03/2023</td>
+                                <td data-label="Ativo:" class="status"><span class="badge sim">Sim</span></td>
+                                <td data-label="Ações:" class="actions">
+                                    <button class="btn btn-edit" title="Editar"><i class="material-icons">edit</i></button>
+                                    <button class="btn btn-view" title="Visualizar"><i class="material-icons">visibility</i></button>
+                                    <button class="btn btn-delete" title="Deletar"><i class="material-icons">delete</i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td data-label="ID:">4</td>
+                                <td data-label="Nome:">Pedro Santos</td>
+                                <td data-label="Email:">pedro@exemplo.com</td>
+                                <td data-label="Telefone:">(31) 97777-8888</td>
+                                <td data-label="CPF/CNPJ:">111.222.333-44</td>
+                                <td data-label="Data Cadastro:">05/04/2023</td>
+                                <td data-label="Ativo:" class="status"><span class="badge nao">Não</span></td>
+                                <td data-label="Ações:" class="actions">
+                                    <button class="btn btn-edit" title="Editar"><i class="material-icons">edit</i></button>
+                                    <button class="btn btn-view" title="Visualizar"><i class="material-icons">visibility</i></button>
+                                    <button class="btn btn-delete" title="Deletar"><i class="material-icons">delete</i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td data-label="ID:">5</td>
+                                <td data-label="Nome:">Ana Costa</td>
+                                <td data-label="Email:">ana@exemplo.com</td>
+                                <td data-label="Telefone:">(41) 96666-7777</td>
+                                <td data-label="CPF/CNPJ:">555.666.777-88</td>
+                                <td data-label="Data Cadastro:">12/05/2023</td>
+                                <td data-label="Ativo:" class="status"><span class="badge sim">Sim</span></td>
+                                <td data-label="Ações:" class="actions">
+                                    <button class="btn btn-edit" title="Editar"><i class="material-icons">edit</i></button>
+                                    <button class="btn btn-view" title="Visualizar"><i class="material-icons">visibility</i></button>
+                                    <button class="btn btn-delete" title="Deletar"><i class="material-icons">delete</i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td data-label="ID:">6</td>
+                                <td data-label="Nome:">XYZ Ltda</td>
+                                <td data-label="Email:">vendas@xyz.com</td>
+                                <td data-label="Telefone:">(51) 95555-6666</td>
+                                <td data-label="CPF/CNPJ:">98.765.432/0001-10</td>
+                                <td data-label="Data Cadastro:">18/06/2023</td>
+                                <td data-label="Ativo:" class="status"><span class="badge nao">Não</span></td>
+                                <td data-label="Ações:" class="actions">
+                                    <button class="btn btn-edit" title="Editar"><i class="material-icons">edit</i></button>
+                                    <button class="btn btn-view" title="Visualizar"><i class="material-icons">visibility</i></button>
+                                    <button class="btn btn-delete" title="Deletar"><i class="material-icons">delete</i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td data-label="ID:">7</td>
+                                <td data-label="Nome:">Carlos Mendes</td>
+                                <td data-label="Email:">carlos@exemplo.com</td>
+                                <td data-label="Telefone:">(61) 94444-5555</td>
+                                <td data-label="CPF/CNPJ:">333.444.555-66</td>
+                                <td data-label="Data Cadastro:">22/07/2023</td>
+                                <td data-label="Ativo:" class="status"><span class="badge sim">Sim</span></td>
+                                <td data-label="Ações:" class="actions">
+                                    <button class="btn btn-edit" title="Editar"><i class="material-icons">edit</i></button>
+                                    <button class="btn btn-view" title="Visualizar"><i class="material-icons">visibility</i></button>
+                                    <button class="btn btn-delete" title="Deletar"><i class="material-icons">delete</i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td data-label="ID:">8</td>
+                                <td data-label="Nome:">Fernanda Lima</td>
+                                <td data-label="Email:">fernanda@exemplo.com</td>
+                                <td data-label="Telefone:">(71) 93333-4444</td>
+                                <td data-label="CPF/CNPJ:">777.888.999-00</td>
+                                <td data-label="Data Cadastro:">30/08/2023</td>
+                                <td data-label="Ativo:" class="status"><span class="badge sim">Sim</span></td>
+                                <td data-label="Ações:" class="actions">
+                                    <button class="btn btn-edit" title="Editar"><i class="material-icons">edit</i></button>
+                                    <button class="btn btn-view" title="Visualizar"><i class="material-icons">visibility</i></button>
+                                    <button class="btn btn-delete" title="Deletar"><i class="material-icons">delete</i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td data-label="ID:">9</td>
+                                <td data-label="Nome:">Tech Solutions</td>
+                                <td data-label="Email:">suporte@tech.com</td>
+                                <td data-label="Telefone:">(81) 92222-3333</td>
+                                <td data-label="CPF/CNPJ:">11.223.344/0001-55</td>
+                                <td data-label="Data Cadastro:">14/09/2023</td>
+                                <td data-label="Ativo:" class="status"><span class="badge nao">Não</span></td>
+                                <td data-label="Ações:" class="actions">
+                                    <button class="btn btn-edit" title="Editar"><i class="material-icons">edit</i></button>
+                                    <button class="btn btn-view" title="Visualizar"><i class="material-icons">visibility</i></button>
+                                    <button class="btn btn-delete" title="Deletar"><i class="material-icons">delete</i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td data-label="ID:">10</td>
+                                <td data-label="Nome:">Lucas Pereira</td>
+                                <td data-label="Email:">lucas@exemplo.com</td>
+                                <td data-label="Telefone:">(91) 91111-2222</td>
+                                <td data-label="CPF/CNPJ:">444.555.666-77</td>
+                                <td data-label="Data Cadastro:">01/10/2023</td>
+                                <td data-label="Ativo:" class="status"><span class="badge sim">Sim</span></td>
+                                <td data-label="Ações:" class="actions">
+                                    <button class="btn btn-edit" title="Editar"><i class="material-icons">edit</i></button>
+                                    <button class="btn btn-view" title="Visualizar"><i class="material-icons">visibility</i></button>
+                                    <button class="btn btn-delete" title="Deletar"><i class="material-icons">delete</i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Sidebar toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const sidebarOverlay = document.querySelector('.sidebar-overlay');
+        const body = document.body;
+
+        menuToggle.addEventListener('click', () => {
+            body.classList.toggle('sidebar-open');
+        });
+
+        sidebarOverlay.addEventListener('click', () => {
+            body.classList.remove('sidebar-open');
+        });
+
+        // Table filters
+        function filterTable() {
+            const search = document.getElementById('search').value.toLowerCase();
+            const statusFilter = document.getElementById('statusFilter').value;
+            const rows = document.querySelectorAll('#clientTableBody tr');
+
+            rows.forEach(row => {
+                const nome = row.cells[1].textContent.toLowerCase();
+                const email = row.cells[2].textContent.toLowerCase();
+                const cpf = row.cells[4].textContent.toLowerCase();
+                const rowStatus = row.cells[6].textContent.trim();
+
+                const matchSearch = !search || nome.includes(search) || email.includes(search) || cpf.includes(search);
+                const matchStatus = statusFilter === 'Todos' ||
+                                   (statusFilter === 'Ativo' && rowStatus === 'Sim') ||
+                                   (statusFilter === 'Inativo' && rowStatus === 'Não');
+
+                row.style.display = matchSearch && matchStatus ? '' : 'none';
+            });
+        }
+
+        document.getElementById('search').addEventListener('input', filterTable);
+        document.getElementById('statusFilter').addEventListener('change', filterTable);
+    </script>
+</body>
+</html>
