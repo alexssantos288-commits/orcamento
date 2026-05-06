@@ -1,0 +1,31 @@
+{
+  "dependencies": {
+    "@supabase/supabase-js": "^2.105.3"
+  },
+  "name": "orcamento",
+  "version": "1.0.0",
+  "description": "orcamento/\r ├── index.html              # Landing page\r ├── pages/\r │   ├── login.html          # Página de login\r │   ├── registrar.html      # Página de registro\r │   ├── privacidade.html    # Política de privacidade\r │   └── termos.html         # Termos de uso\r ├── dashboard/\r │   ├── index.html          # Dashboard principal\r │   └── pages/\r │       ├── orcamentos.html # Gerenciar orçamentos\r │       ├── contratos.html  # Gerenciar contratos\r │       ├── clientes.html   # Gerenciar clientes\r │       ├── perfil.html     # Perfil do usuário\r │       └── configuracoes.html # Configurações\r ├── .gitignore\r └── README.md",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+
+    
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexssantos288-commits/orcamento.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/alexssantos288-commits/orcamento/issues"
+  },
+  "homepage": "https://github.com/alexssantos288-commits/orcamento#readme"
+
+ 
+}
